@@ -9,10 +9,15 @@ module "vpc" {
   public_subnets  = var.vpc_public_subnets
   private_subnets = var.vpc_private_subnets  
 
-  
+
   create_database_subnet_group = true
   create_database_subnet_route_table= true
   database_subnets    = ["10.0.151.0/24", "10.0.152.0/24"]
+
+  database_subnets = var.vpc_database_subnets
+  create_database_subnet_group = var.vpc_create_database_subnet_group
+  create_database_subnet_route_table = var.vpc_create_database_subnet_route_table
+
 
   enable_nat_gateway = true
   single_nat_gateway = true
