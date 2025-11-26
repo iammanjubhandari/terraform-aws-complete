@@ -19,9 +19,12 @@ module "vpc" {
   create_database_subnet_route_table = var.vpc_create_database_subnet_route_table
 
 
-  enable_nat_gateway = true
-  single_nat_gateway = true
+  # enable_nat_gateway = true
+  # single_nat_gateway = true
 
+  enable_nat_gateway = var.vpc_enable_nat_gateway 
+  single_nat_gateway = var.vpc_single_nat_gateway
+  
   enable_dns_hostnames = true
   enable_dns_support = true
 
@@ -37,14 +40,8 @@ module "vpc" {
     Type = "database-subnets"
   }
 
-  tags = {
-    Owner = "iammanju"
-    Environment = "dev"
-  }
-
-  vpc_tags = {
-    Name = "vpc-dev"
-  }
+  tags = local.common_tags
+  vpc_tags = local.common_tags
 
 }
 
