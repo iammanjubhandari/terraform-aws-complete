@@ -3,11 +3,12 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.4.0"  
 
-  name = "vpc-dev"
-  cidr = "10.0.0.0/16"   
-  azs                 = ["us-east-1a", "us-east-1b"]
-  private_subnets     = ["10.0.1.0/24", "10.0.2.0/24"]
-  public_subnets      = ["10.0.101.0/24", "10.0.102.0/24"]
+  name = "${local.name}-${var.vpc_name}"
+  cidr = var.vpc_cidr_block
+  azs             = var.vpc_availability_zones
+  public_subnets  = var.vpc_public_subnets
+  private_subnets = var.vpc_private_subnets  
+
   
   create_database_subnet_group = true
   create_database_subnet_route_table= true
