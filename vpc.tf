@@ -19,6 +19,26 @@ module "vpc" {
   enable_dns_hostnames = true
   enable_dns_support = true
 
+  public_subnet_tags = {
+    Type = "public-subnets"
+  }
+
+  private_subnet_tags = {
+    Type = "private-subnets"
+  }
+
+  database_subnet_tags = {
+    Type = "database-subnets"
+  }
+
+  tags = {
+    Owner = "iammanju"
+    Environment = "dev"
+  }
+
+  vpc_tags = {
+    Name = "vpc-dev"
+  }
 
 }
 
