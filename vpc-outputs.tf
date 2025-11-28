@@ -14,3 +14,17 @@ output "private_subnets" {
   value = module.vpc.vpc_private_subnets
 }
 
+output "public_subnets" {
+    description = "IDs of Public Subnet"
+    value = module.vpc.vpc_public_subnets
+}
+
+output "nat_public_ips" {
+  description = "Elastic IPs created for AWS NAT Gateway"
+  value = module.vpc.nat_public_ips
+}
+
+output "azs" {
+    description = "Availablity zones"
+    value = module.vpc.azs
+}
