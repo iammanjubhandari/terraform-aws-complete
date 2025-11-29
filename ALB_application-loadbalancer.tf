@@ -31,9 +31,28 @@ module "alb" {
             load_balacing_cross_zone_enable = false
             protocol_version = "HTTP1"
             health_check = {
-                
+                enabled             = true
+                interval            = 30
+                path                = "/app1/index.html"
+                healthy_threshold   = 3
+                unhealthy_threshold = 6
+                protocol            = "HTTP"
+                matcher             = "200-399"
+
             }
+            tags = local.common_tags
         }
     }
-  
+    tags = local.commom_tags
+}
+
+
+resource "aws_lb_target_group_attachment" "mytg1" {
+    for_each = {for k, v in module.ec2_private: k => v}
+    target_id = each.value.id
+    port = 80
+}
+
+output "zz_ec2_private" {
+    value = {for ec2_instance, ec2_instance_details in module.ec2_private: ec2_instance => ec2_instance}  
 }
