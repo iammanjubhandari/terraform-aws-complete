@@ -7,3 +7,8 @@ instance = module.ec2_public.id
 domain = "vpc"
 
 
+provisioner "local-exec" {
+    command = "echo Destroy time prov 'data' >> destroy-time-prov.txt"
+    working_dir = "local-exec-output-files/"
+    when = destroy
+}
