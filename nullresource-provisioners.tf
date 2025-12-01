@@ -16,7 +16,7 @@ provisioner "file" {
 
 provisioner "remote-exec" {
   inline = [
-    "sudo chmod 400 /tmp/terraform-key.pem"
+    "sudo chmod 400 /tmp/terraform-key-us-east-2.pem"
    ]
 }
 
