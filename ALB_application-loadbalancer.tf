@@ -75,7 +75,9 @@ module "alb" {
     target_groups = {
         mytg1 = {
             create_attachment = false
-            name_prefix = "HTTP"
+            name_prefix = "mytg1-"
+            protocol = 80
+        
             port = 80
             target_type = "instance"
             deregistration_delay = 10
@@ -89,7 +91,6 @@ module "alb" {
                 unhealthy_threshold = 6
                 protocol            = "HTTP"
                 matcher             = "200-399"
-
             }
             tags = local.common_tags
         }
@@ -97,6 +98,7 @@ module "alb" {
     tags = local.commom_tags
 }
 
+    tag
 
 resource "aws_lb_target_group_attachment" "mytg1" {
     for_each = {for k, v in module.ec2_private: k => v}
