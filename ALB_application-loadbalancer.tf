@@ -105,6 +105,15 @@ module "alb" {
         target_type = "instance"
         deregistration_delay = 10
         load_balacing_cross_zone_enable = false
+        protocol_version = "HTTP1"
+        health_check = {
+            enabled = true
+            interval = 30
+            path = "/app2/index.html"
+            port = "traffic-port"
+            healthy_threshold = 3
+            unhealthy_threshold = 3
+        }
     }
 
 resource "aws_lb_target_group_attachment" "mytg1" {
