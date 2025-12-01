@@ -98,7 +98,14 @@ module "alb" {
     tags = local.commom_tags
 }
 
-    tag
+    mytg2 = {
+        create_attachment = false
+        name_prefix = "mytg2-"
+        port = 80
+        target_type = "instance"
+        deregistration_delay = 10
+        load_balacing_cross_zone_enable = false
+    }
 
 resource "aws_lb_target_group_attachment" "mytg1" {
     for_each = {for k, v in module.ec2_private: k => v}
