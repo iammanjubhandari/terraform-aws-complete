@@ -12,13 +12,64 @@ module "alb" {
     enable_deletion_protection = false
 
     listeners = {
-        my-http-listener = {
+        my-http-https=redirects = {
             port = 80
             protocol = "HTTP"
-            forward = {
-                target_group_key = "mytg1"
+            redirects = {
+                port = "443"
+                protocol = "HTTPS"
+                status_code = "HTTP_301"
             }
         }
+    }
+
+    my-https-listener{
+        port = 443
+        protocol = "text/plain"
+        message_body = "Fixed Static message - For Root Context"
+        status_code = "200"
+    }
+
+    rules = {
+        myapp1-rule[{
+            actions = [{
+                target_groups = [
+                    {
+                    target_group_key = "mytg1"
+                    weight = 1
+                    } 
+                ]
+                stickness = {
+                    enabled = true
+                    duration = 3600
+                }
+            }]
+            conditions = [{
+                host_header = {
+                    values = [var.app1_dns_name]
+                }
+            }]
+          }
+          myapp2-rule = {
+            actions = [{
+                type = "weight-forward"
+                target_groups =[
+                    {
+                        target_group_key = "mytg2"
+                        weight = 1
+                    }
+                    stickness ={
+                        enabled = true
+                        duration = 3600
+                    }
+            }]
+            conditions = [{
+                host_header = {
+                    values = [var.app2_dns_name]
+                }
+            }]
+          }
+        }]
     }
 
     target_groups = {
