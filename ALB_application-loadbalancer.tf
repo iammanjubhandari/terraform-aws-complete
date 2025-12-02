@@ -31,8 +31,10 @@ module "alb" {
     }
 
     rules = {
-        myapp1-rule[{
+        myapp1-rule = {
+            priority = 1
             actions = [{
+                type = "weight-forward"
                 target_groups = [
                     {
                     target_group_key = "mytg1"
@@ -46,6 +48,7 @@ module "alb" {
             }]
             conditions = [{
                 host_header = {
+                    http_header_name = "custome-header"
                     values = [var.app1_dns_name]
                 }
             }]
