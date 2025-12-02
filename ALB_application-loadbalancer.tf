@@ -129,6 +129,9 @@ resource "aws_lb_target_group_attachment" "mytg1" {
     port = 80
 }
 
-output "zz_ec2_private" {
-    value = {for ec2_instance, ec2_instance_details in module.ec2_private: ec2_instance => ec2_instance}  
+resource "aws_lb_target_group_attachment" "mytg2" {
+  for_each = {for k,v in module.ec2_private_app2: k => v}
+  target_group_arn = module.alb.target_groups["mytg2"].arn
+  target_id        = each.value.id
+  port             = 80
 }
