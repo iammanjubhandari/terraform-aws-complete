@@ -1,6 +1,6 @@
-resource "aws_route53_record" "app_dns" {
+resource "aws_route53_record" "defailt_dns" {
   zone_id = data.aws_route53_zone.mydomain.zone_id
-  name = "apps.iammanjubhandari.com"
+  name = "myapps.iammanjubhandari.com"
   type = "A"
   alias {
     name = module.alb.dns_name
