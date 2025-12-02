@@ -49,11 +49,12 @@ module "alb" {
             conditions = [{
                 host_header = {
                     http_header_name = "custome-header"
-                    values = [var.app1_dns_name]
+                    values = ["app-1","app1","my-app-1"]
                 }
             }]
           }
           myapp2-rule = {
+            priority = 2
             actions = [{
                 type = "weight-forward"
                 target_groups =[
@@ -74,6 +75,32 @@ module "alb" {
           }
         }]
     }
+
+
+    my-redirects-query = {
+        priority = 3
+        actions = [{
+            type = "redirect"
+            status_code = "HTTP_302"
+            host = "iammanjubhandari.com"
+            path = "/aws-eks/"
+            query = ""
+            protocol = "HTTPS"
+        }]
+
+
+
+        
+    } 
+
+
+
+
+
+
+
+
+
 
     target_groups = {
         mytg1 = {
