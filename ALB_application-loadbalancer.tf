@@ -117,11 +117,14 @@ module "alb" {
             protocol = "HTTP"
             matcher = "200-399"
         }
-        
+        tags = local.commom_tags
     }
+    tags = local.common_tags
+ }
 
 resource "aws_lb_target_group_attachment" "mytg1" {
     for_each = {for k, v in module.ec2_private: k => v}
+    target_group_arn = module.alb.target_groups["mytg1"].arn
     target_id = each.value.id
     port = 80
 }
