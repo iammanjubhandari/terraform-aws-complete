@@ -115,8 +115,14 @@ module "alb" {
         }]
     }
 
-
-
+    conditions = [{
+        host_header = {
+            values = ["azure-aks11.iammanjubhandari.com"]
+        }
+    }]
+   }
+  }
+ }  
 
     target_groups = {
         mytg1 = {
