@@ -90,14 +90,30 @@ module "alb" {
 
 
 
-        
+
     } 
 
 
+    conditions = [{
+        query_string = {
+            key   = "website"
+            value = "aws-eks"
+            }
+          }]
+        }
 
 
-
-
+    my-redirect-hh = {
+        priority = 4
+        actions = [{
+            type = "redirect"
+            status_code = "HTTP_302"
+            host = "iammanjubhandari"
+            path = "/azure-aks/azure-kubernetes-service-indtruction/"
+            query = ""
+            protocol = "HTTPS"
+        }]
+    }
 
 
 
