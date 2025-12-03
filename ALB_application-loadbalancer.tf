@@ -25,9 +25,10 @@ module "alb" {
 
     my-https-listener{
         port = 443
-        protocol = "text/plain"
-        message_body = "Fixed Static message - For Root Context"
-        status_code = "200"
+        protocol = "HTTPS"
+        message_body = "ELBSecurityPolicy-TLS3-1-2-2021-06"
+        certificate_arn = module.acm.acm_certificate_arn
+        #status_code = "200"
     }
 
     rules = {
