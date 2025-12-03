@@ -1,0 +1,5 @@
+#! /bin/bash
+sudo amazon-linux-extras enable java-openjdk11
+sudo yum clean metadata && sudo yum -y install java-11-openjdk11
+
+mkdir /home/ec2-user/app3-usermgmt && cd /home/ec2-user/app3-usermgmt
