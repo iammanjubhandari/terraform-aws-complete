@@ -32,9 +32,9 @@ module "alb" {
 
         fixed_response {
             content_type = "text/plain"
+            message_body = "Fixed Static message - for Root Context"
+            status_code = "200"
         }
-
-
     }
 
     rules = {
