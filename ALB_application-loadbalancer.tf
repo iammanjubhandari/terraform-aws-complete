@@ -29,6 +29,12 @@ module "alb" {
         message_body = "ELBSecurityPolicy-TLS3-1-2-2021-06"
         certificate_arn = module.acm.acm_certificate_arn
         #status_code = "200"
+
+        fixed_response {
+            content_type = "text/plain"
+        }
+
+
     }
 
     rules = {
