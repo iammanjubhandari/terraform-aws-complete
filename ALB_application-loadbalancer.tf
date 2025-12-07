@@ -12,7 +12,7 @@ module "alb" {
     enable_deletion_protection = false
 
     listeners = {
-        my-http-https=redirects = {
+        my-http-https-redirects = {
             port = 80
             protocol = "HTTP"
             redirects = {
@@ -39,7 +39,7 @@ module "alb" {
 
     rules = {
         myapp1-rule = {
-            priority = 1
+            priority = 10
             actions = [{
                 type = "weight-forward"
                 target_groups = [
@@ -61,7 +61,7 @@ module "alb" {
             }]
           }
           myapp2-rule = {
-            priority = 2
+            priority = 20
             actions = [{
                 type = "weight-forward"
                 target_groups =[
@@ -84,52 +84,30 @@ module "alb" {
     }
 
 
-    my-redirects-query = {
-        priority = 3
-        actions = [{
-            type = "redirect"
-            status_code = "HTTP_302"
-            host = "iammanjubhandari.com"
-            path = "/aws-eks/"
-            query = ""
-            protocol = "HTTPS"
-        }]
-
-
-
-
-    } 
-
-
-    conditions = [{
-        query_string = {
-            key   = "website"
-            value = "aws-eks"
+    myapp3-rule = {
+          priority = 30          
+          actions = [{
+            type = "weighted-forward"
+            target_groups = [
+              {
+                target_group_key = "mytg3"
+                weight           = 1
+              }
+            ]
+            stickiness = {
+              enabled  = true
+              duration = 3600
+            }
+          }]
+          conditions = [{
+            path_pattern = {
+              values = ["/*"]
             }
           }]
         }
-
-
-    my-redirect-hh = {
-        priority = 4
-        actions = [{
-            type = "redirect"
-            status_code = "HTTP_302"
-            host = "iammanjubhandari"
-            path = "/azure-aks/azure-kubernetes-service-indtruction/"
-            query = ""
-            protocol = "HTTPS"
-        }]
+      }
     }
-
-    conditions = [{
-        host_header = {
-            values = ["azure-aks11.iammanjubhandari.com"]
-        }
-    }]
-   }
   }
- }  
 
     target_groups = {
         mytg1 = {
