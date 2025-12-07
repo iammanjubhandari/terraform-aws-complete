@@ -12,9 +12,11 @@ module "rdsdb_sg" {
         to_port = 3306
         protocol = "tcp"
         description = "MYSQL access from within VPC"
-    }
+        cidr_blocks = module.vpc.vpc_cidr_block
+    },
  ]
 
-
+ egress_rules = ["all-all"]
+ tags = local.common_tags
 }
 
