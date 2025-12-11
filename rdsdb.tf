@@ -17,6 +17,14 @@ create_db_subnet_group = true
 subnet_ids = module.vpc.database_subnets
 vpc_security_group_ids = [module.rdsdb_sg.security_group_id]
 
+engine = "mysql"
+engine_version = "8.0.35"
+family = "mysql8.0"
+major_engine_version = "8.0"
+instance_class = "db.t3.large"
 
+allocated_storage = 20
+max_allocated_storage = 100
+storage_encrypted = false
 
 }
