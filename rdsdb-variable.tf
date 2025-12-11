@@ -14,4 +14,8 @@ variable "db_username" {
 }
 
 
-
+variable "db_password" {
+  description = "AWS RDS DB Passowrrd"
+  type = string
+  sensitive = true
+}
