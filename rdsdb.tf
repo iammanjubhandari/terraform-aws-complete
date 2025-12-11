@@ -27,4 +27,25 @@ allocated_storage = 20
 max_allocated_storage = 100
 storage_encrypted = false
 
+performance_insights_enabled = true
+performance_insights_retention_period = 7
+create_monitoring_role = true
+monitoring_interval = 60
+
+parameters = [
+    {
+        name = "character_set_server"
+        value = "utf8mb4"
+    },
+    {
+        name = "characyer_set_server"
+        value = "utf8mb4"
+    }
+
+    
+
+]
+
+
+
 }
