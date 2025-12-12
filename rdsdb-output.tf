@@ -23,8 +23,28 @@ output "db_instance_hosted_zone_id" {
   value = module.rdsdb.db_instance_hosted_zone_id
 }
 
-output "db_instance_db" {
+output "db_instance_id" {
   description = "The RDS instance ID"
   value = module.rdsdb.db_instance_identifier
 }
+
+
+output "db_instance_resource_id" {
+  description = "The database name"
+  value = module.rdsdb.db_instance_resource_id
+}
+
+output "db_instance_name" {
+  description = "The database name"
+  value = module.rdsdb.db_instance_username
+  sensitive = true
+}
+
+output "db_instance_password" {
+  description = "The database password"
+  value = module.rdsdb.db_instance_password
+  sensitive = true
+}
+
+
 
