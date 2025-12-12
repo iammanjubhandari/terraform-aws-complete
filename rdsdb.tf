@@ -41,8 +41,16 @@ parameters = [
         name = "characyer_set_server"
         value = "utf8mb4"
     }
-
-    
+ tags = local.common_tags
+ db_instances_tags = {
+    "sensitive" = "low"
+ }
+db_option_group_tags = {
+    "sensitive" = "low"
+}
+db_parameter_group_tags = {
+    "sensitive" = "low"
+}
 
 ]
 
