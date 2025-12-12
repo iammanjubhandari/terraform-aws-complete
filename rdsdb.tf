@@ -52,6 +52,10 @@ db_parameter_group_tags = {
     "sensitive" = "low"
 }
 
+db_subset_group_tags = {
+    "Sensitive" = "high"
+}
+
 ]
 
 
