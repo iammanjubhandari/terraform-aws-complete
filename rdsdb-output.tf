@@ -40,11 +40,27 @@ output "db_instance_name" {
   sensitive = true
 }
 
-output "db_instance_password" {
-  description = "The database password"
-  value = module.rdsdb.db_instance_password
+output "db_instance_port" {
+  description = "The database port"
+  value = module.rdsdb.db_instance_port
   sensitive = true
 }
+
+output "db_subent_group_id" {
+  description = "DB subent group name"
+  value = module.rdsdb_db_subnet_group_arn
+}
+
+output "db_subnet_group_arn" {
+    description = "ARN of the db subnet group"
+    value = module.dsdb.db_paramater_group_arn
+}
+
+output "db_parameter_group_id" {
+  description = "The DB parameter group id"
+  value = module.rdsdb.db_parameter_group_id
+}
+
 
 
 
