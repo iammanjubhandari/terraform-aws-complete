@@ -61,6 +61,15 @@ output "db_parameter_group_id" {
   value = module.rdsdb.db_parameter_group_id
 }
 
+output "db_parameter_group_arn" {
+  description = "DB parameter group ARN"
+  value = module.rdsdb.db_parameter_group_arn
+}
+
+output "db_enhanced_monitoring_iam_role_arm" {
+  description = "ARN specifying the monioting role"
+  value = module.rdsdb.enhanced_monitoring_iam_role_arn
+}
 
 
 
