@@ -11,7 +11,7 @@ module "vpc" {
 
 
   create_database_subnet_group = true
-  create_database_subnet_route_table= true
+  create_database_subnet_route_table = true
   database_subnets    = ["10.0.151.0/24", "10.0.152.0/24"]
 
   database_subnets = var.vpc_database_subnets
