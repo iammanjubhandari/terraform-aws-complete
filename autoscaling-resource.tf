@@ -13,9 +13,19 @@ resource "aws_autoscaling_group" "my_asg" {
     health_check_grace_peroid = 300
     launch_template {
         id = aws_launch_template.my_launch_template.id
-        verversion = aws_launch_template.my_launch_template.latest_version
+        version = aws_launch_template.my_launch_template.latest_version
     }
  
-    
-
+    instance_refresh {
+      strategy = "Rolling"
+      preferences {
+      min_healthy_percentage = 50  
+      }
+    triggeres = ["sesired_capacity"]
+    }
+    tag {
+        key     = "Owners"
+        value   =  "Web_Team"
+        propogate_at_launch = true
+    }
 }
