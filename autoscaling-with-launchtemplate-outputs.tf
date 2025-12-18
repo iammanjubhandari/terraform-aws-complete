@@ -1,3 +1,4 @@
+# Launch Template Outputs
 output "launcg_template_id" {
     description = "Launch Template ID"
     value = aws_launch_template.my_launch_template.id
