@@ -7,5 +7,15 @@ resource "aws_autoscaling_group" "my_asg" {
     min_size = 2
     vpc_zone_identified = module.vpc_private_subnets
 
+    target_group_arns = module.a;b.target_groups_arns
+
+    health_check_type = "Ec2"
+    health_check_grace_peroid = 300
+    launch_template {
+        id = aws_launch_template.my_launch_template.id
+        verversion = aws_launch_template.my_launch_template.latest_version
+    }
+ 
     
+
 }
