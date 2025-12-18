@@ -14,4 +14,9 @@ output "autoscaling_group_id" {
 }
 
 
+output "autoscaling_group_name" {
+    description = "Autoscaling Group Name"
+    value = aws_autoscaling_group.my_asg.name
+}
+
 
