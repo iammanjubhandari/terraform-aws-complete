@@ -3,4 +3,12 @@ resource "aws_autoscaling_policy" "avg_cpu_policy_greater_than_xx" {
   policy_type = "TargetTrackingScaling" 
   autoscaling_group_name = aws_autoscaling_group.my_asg.id 
   estimated_instance_warmup = 180 
+
+  # CPU Utilization is above 50
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+    target_value = 50.0
+  }  
 }
