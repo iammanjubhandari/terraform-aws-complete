@@ -12,3 +12,10 @@ resource "aws_autoscaling_policy" "avg_cpu_policy_greater_than_xx" {
     target_value = 50.0
   }  
 }
+
+
+resource "aws_autoscaling_policy" "alb_target_requests_greater_than_yy" {
+  name                   = "alb-target-requests-greater-than-yy"
+  policy_type = "TargetTrackingScaling" 
+
+}
