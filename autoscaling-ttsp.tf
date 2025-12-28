@@ -17,5 +17,7 @@ resource "aws_autoscaling_policy" "avg_cpu_policy_greater_than_xx" {
 resource "aws_autoscaling_policy" "alb_target_requests_greater_than_yy" {
   name                   = "alb-target-requests-greater-than-yy"
   policy_type = "TargetTrackingScaling" 
+  autoscaling_group_name = aws_autoscaling_group.my_asg.id 
+  estimated_instance_warmup = 120
 
 }
