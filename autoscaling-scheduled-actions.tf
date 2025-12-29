@@ -14,5 +14,7 @@ resource "aws_autoscaling_schedule" "increase_capacity_7am" {
 # Scheduled Action-2: Decrease capacity during business hours
 resource "aws_autoscaling_schedule" "decrease_capacity_5pm" {
   scheduled_action_name  = "decrease-capacity-5pm"
-  autoscaling_group_name = aws_autoscaling_group.my_asg.id
+    min_size               = 2
+    max_size               = 10
+    autoscaling_group_name = aws_autoscaling_group.my_asg.id
 }
