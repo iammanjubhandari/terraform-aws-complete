@@ -28,3 +28,7 @@ resource "aws_autoscaling_policy" "alb_target_requests_greater_than_yy" {
     target_value = 10.0
   } 
 }
+
+output "asg_build_resource_label" {
+  value =  "${module.alb.arn_suffix}/${module.alb.target_groups["mytg1"].arn_suffix}"  
+}
